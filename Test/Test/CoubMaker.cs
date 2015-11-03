@@ -39,44 +39,59 @@ namespace Test
 
             if (audioDuration > videoDuration)
             {
-                int cicles = (int)(audioDuration / videoDuration);
-                using (StreamWriter file = new StreamWriter(listPath))
+                int loops = (int)(audioDuration / videoDuration);
+                GenerateConcatinaionFile(videoPath, listPath, loops);
+                ConcatVideoAndReduce(listPath, audioPath, coubPath);
+            }
+            else
+            {
+                int loops = (int)(videoDuration / audioDuration);
+                GenerateConcatinaionFile(audioPath, listPath, loops);
+                ConcatAudioAndReduce(listPath, videoPath, coubPath);
+            }
+
+        }
+
+        private static void GenerateConcatinaionFile(string mediaPath, string listPath, int loops)
+        {
+            using (StreamWriter file = new StreamWriter(listPath))
+            {
+                for (int i = 0; i <= loops; i++)
                 {
-                    for (int i = 0; i <= cicles; i++)
-                    {
-                        file.WriteLine("file '{0}'\n", videoPath);
-                    }
+                    file.WriteLine("file '{0}'\n", mediaPath);
                 }
-                ConcatAndReduce(listPath, audioPath, coubPath);
             }
         }
 
         private double GetDuration(string mediaPath)
         {
             string param = String.Format(@"-v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 {0}", mediaPath);
-            var prc = new Process
-            {
-                StartInfo = new ProcessStartInfo(ffprobePath, param)
-                    {
-                        UseShellExecute = false,
-                        RedirectStandardOutput = true,
-                        CreateNoWindow = true
-                    }
-            };
-            prc.Start();
+            StreamReader output = Execute(ffprobePath, param);
             double duration = 0.0;
-            if (!prc.StandardOutput.EndOfStream)
+            if (!output.EndOfStream)
             {
-                duration = double.Parse(prc.StandardOutput.ReadLine(), CultureInfo.InvariantCulture);
+                duration = double.Parse(output.ReadLine(), CultureInfo.InvariantCulture);
             }
             return duration;
         }
 
-        private void ConcatAndReduce(string txtPath, string audioPath,  string outputPath)
+        private void ConcatVideoAndReduce(string txtPath, string audioPath,  string outputPath)
         {
             string param = String.Format("-i {1} -f concat -i {0} -c:v copy -c:a copy -y -shortest {2}",
                 txtPath, audioPath, outputPath);
-            var inf = new ProcessStartInfo(ffmpegPath, param)
+            Execute(ffmpegPath, param);
+        }
+
+        private void ConcatAudioAndReduce(string txtPath, string videoPath, string outputPath)
+        {
+            string param = String.Format(" -f concat -i {0} -i {1} -c:v copy -c:a copy -y -shortest {2}",
+                txtPath, videoPath, outputPath);
+            Execute(ffmpegPath, param);
+        }
+
+        private StreamReader Execute(string programPath, string param)
+        {
+            var inf = new ProcessStartInfo(programPath, param)
             {
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
@@ -86,6 +101,9 @@ namespace Test
             prc.StartInfo = inf;
             prc.Start();
             prc.WaitForExit();
+            return prc.StandardOutput;
         }
+
+        
     }
 }
