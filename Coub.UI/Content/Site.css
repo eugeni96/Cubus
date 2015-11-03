@@ -2,7 +2,7 @@
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
-    background-color: #000;
+    background-color: #fff;
 }
 
 header, footer, nav, section {
@@ -60,5 +60,17 @@ textarea {
     display: none;
 }
 
+/* Styles previes (_PreviewPartial)
+-----------------------------------------------------------*/
 
+.previews-container {
+    
+}
+.previews-container ul{
+    list-style-type: none;
+    padding-left: 0;
+}
 
+.previews-container * img{
+    height: 50px;
+}

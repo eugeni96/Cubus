@@ -1,20 +1,26 @@
 ﻿
 
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-
-
-<div id="previews" class="nav-left">
-
+@Ajax.ActionLink("ShowPreviesTest", "GetPreviews", "Home", null, new AjaxOptions() { UpdateTargetId = "previews"})
+@Ajax.ActionLink("Test", "GetTestString", new AjaxOptions() { UpdateTargetId = "previews", Url = Url.Action("GetTestString") })
+<hr/>
+<div>
+    <div id="previews" class="previews-container">
+        <p>Empty</p>
+    </div>
 </div>
 
 
 
 
-<script>
+
+
+@*<script>
     var createImgTag = function (parentId, base54Data) {
         var img = document.createElement("img");
         img.src = "data:image/jpg;base64," + base54Data;
@@ -22,5 +28,8 @@
 
         document.getElementById(parentId).appendChild(img);
     };
-    createImgTag("previews", '@ViewBag.Base64Image');
-</script>
+    
+    for (var i = 0; i < parseInt(@ViewBag.Base64Previews.Count); i++) {
+        createImgTag("previews", @((List<string>)ViewBag.Base64Previews[i]));
+    }
+</script>*@
