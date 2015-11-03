@@ -6,19 +6,24 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
 </head>
-<body>
-    <header>
-    
+<body id="main-body">
+    <header id="main-header">
+        <a href="/Home/Index"><img class="logo" src="/Content/images/logo_coubus.png" alt="Coubus logo"/></a>
     </header>
 
 
+<div>
+    <img id="loading-indicator" src="~/Content/images/loader.gif" style="display: none; height: 50px;" />
     @RenderBody()
+</div>
 
-
-
+    <footer id="main-footer">
+        <span>Created by COUBUS team</span>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

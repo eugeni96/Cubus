@@ -5,10 +5,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-@Ajax.ActionLink("ShowPreviesTest", "GetPreviews", "Home", null, new AjaxOptions() { UpdateTargetId = "previews"})
-@Ajax.ActionLink("Test", "GetTestString", new AjaxOptions() { UpdateTargetId = "previews", Url = Url.Action("GetTestString") })
-<hr/>
+
+<nav>
+    <ul>
+        <li>@Ajax.ActionLink("ShowPrevies", "GetPreviews", "Home", null, new AjaxOptions() { UpdateTargetId = "previews", LoadingElementId = "loading-indicator" })</li>
+        <li>@Ajax.ActionLink("Test", "GetTestString", new AjaxOptions() { UpdateTargetId = "previews", Url = Url.Action("GetTestString") })</li>
+    </ul>
+</nav>
+
+
 <div>
     <div id="previews" class="previews-container">
         <p>Empty</p>
