@@ -51,10 +51,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoubusIndexerEngine\CoubusIndexerEngine.csproj">
-      <Project>{c87f7cfa-9635-4983-bc44-13fc6028a7af}</Project>
-      <Name>CoubusIndexerEngine</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CustomIndexer\CustomIndexer.csproj">
       <Project>{6573c5ac-a744-4232-9956-1381f7bd41f9}</Project>
       <Name>CustomIndexer</Name>

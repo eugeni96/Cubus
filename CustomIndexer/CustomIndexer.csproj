@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassificationInitializer.cs" />
-    <Compile Include="CoubusIndexerEngine.cs" />
+    <Compile Include="CubusProcessEngine.cs" />
+    <Compile Include="CubusIndexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

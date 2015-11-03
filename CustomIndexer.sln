@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoubusIndexerEngine", "CoubusIndexerEngine\CoubusIndexerEngine.csproj", "{C87F7CFA-9635-4983-BC44-13FC6028A7AF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomIndexer", "CustomIndexer\CustomIndexer.csproj", "{6573C5AC-A744-4232-9956-1381F7BD41F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{1D711172-5D30-4D39-A44A-D685724CE849}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C87F7CFA-9635-4983-BC44-13FC6028A7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C87F7CFA-9635-4983-BC44-13FC6028A7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C87F7CFA-9635-4983-BC44-13FC6028A7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C87F7CFA-9635-4983-BC44-13FC6028A7AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6573C5AC-A744-4232-9956-1381F7BD41F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6573C5AC-A744-4232-9956-1381F7BD41F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6573C5AC-A744-4232-9956-1381F7BD41F9}.Release|Any CPU.ActiveCfg = Release|Any CPU

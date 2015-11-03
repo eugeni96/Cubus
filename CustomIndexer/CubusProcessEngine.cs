@@ -13,9 +13,9 @@ using Adam.Core.Classifications;
 
 namespace CustomIndexer
 {
-    public class CoubusIndexerEngine : IndexMaintenanceJob
+    public class CubusProcessEngine : IndexMaintenanceJob
     {
-        public CoubusIndexerEngine(Application app)
+        public CubusProcessEngine(Application app)
             : base(app)
         {
         }
