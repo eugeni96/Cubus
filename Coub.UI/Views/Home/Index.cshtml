@@ -6,6 +6,21 @@
 
 <h2>Index</h2>
 
-<img src="/Home/GetFile" alt="Alternate Text" />
+
+<div id="previews" class="nav-left">
+
+</div>
 
 
+
+
+<script>
+    var createImgTag = function (parentId, base54Data) {
+        var img = document.createElement("img");
+        img.src = "data:image/jpg;base64," + base54Data;
+        img.alt = "previewImage";
+
+        document.getElementById(parentId).appendChild(img);
+    };
+    createImgTag("previews", '@ViewBag.Base64Image');
+</script>

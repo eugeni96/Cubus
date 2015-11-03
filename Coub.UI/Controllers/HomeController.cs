@@ -17,33 +17,45 @@ namespace Coub.UI.Controllers
         // GET: /Home/
 
         public ActionResult Index()
-        {
+        {   
+            Application app = new Application();
+            LogOnStatus status = app.LogOn("TRAINING", "Administrator", "P2ssw0rd");
+            Console.WriteLine(status);
+            if (status != LogOnStatus.LoggedOn)
+            {
+                throw new UnauthorizedAccessException();
+            }
+            Session["AdamApp"] = app;
+            ViewBag.Base64Image = GetByte64Image();
             return View();
         }
 
         public FileContentResult GetFile()
         {
-            #region LogOn
-
-            Application app = new Application();
-            LogOnStatus status = app.LogOn("TRAINING", "Demidov", "123456");
-            
-            if (status != LogOnStatus.LoggedOn)
-            {
-                throw new UnauthorizedAccessException();
-            }
-
-            #endregion    
-       
-            Record rec = new Record(app);
+            Record rec = new Record((Application)Session["AdamApp"]);
             Guid recId;
             Guid.TryParse("7819340e-b66c-4225-a604-a54500a909b2", out recId);
             rec.Load(recId);
 
             IReadOnlyImage prev = rec.Files.Master.GetPreview();
             return new FileContentResult(prev.GetBytes(), "image/jpeg");
-            
         }
 
+        private string GetByte64Image()
+        {
+            Record rec = new Record((Application)Session["AdamApp"]);
+            Guid recId;
+            Guid.TryParse("7819340e-b66c-4225-a604-a54500a909b2", out recId);
+            rec.Load(recId);
+
+            IReadOnlyImage prev = rec.Files.Master.GetPreview();
+            byte[] imagData = prev.GetBytes();
+            string imageDataString = Convert.ToBase64String(imagData);
+            return imageDataString;
+        }
+
+
+
+        
     }
 }

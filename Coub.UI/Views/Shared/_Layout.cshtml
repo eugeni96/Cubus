@@ -8,9 +8,18 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
+<header>
+    
+</header>
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+<section>
+    @RenderBody()
+</section>
+
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@RenderSection("scripts", required: false)
 </body>
 </html>
