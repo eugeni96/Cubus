@@ -62,7 +62,7 @@ namespace Test
 
         private static void Cut(string videoPath, double start, double duration,string outputPath)
         {
-            string param = String.Format(@"-ss {1} -i {0} -t {2} -c:v copy -c:a copy {3}", videoPath, start, duration, outputPath);
+            string param = String.Format(@"-ss {1} -i {0} -t {2} -c:v copy -c:a copy -y {3}", videoPath, start, duration, outputPath);
             var inf = new ProcessStartInfo(@"C:\ffmpeg\bin\ffmpeg.exe", param)
             {
                 UseShellExecute = false,

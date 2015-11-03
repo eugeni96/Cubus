@@ -33,8 +33,25 @@ namespace Test
 
         public void MakeCoub(string videoPath, string audioPath, string coubPath)
         {
-            double audioDuration = GetDuration(audioPath);
             double videoDuration = GetDuration(videoPath);
+            Process(videoPath, videoDuration, audioPath, coubPath);
+        }
+
+        public void MakeCoub(string videoPath, double videoDuration, string audioPath, string coubPath)
+        {
+            MakeCoub(videoPath, 0, videoDuration, audioPath, coubPath);
+        }
+
+        public void MakeCoub(string videoPath, double videoStart, double videoDuration, string audioPath, string coubPath)
+        {
+            string tempVideoPath = Path.Combine(tempPath, "temp.mp4");
+            Cut(videoPath, videoStart, videoDuration, tempVideoPath);
+            Process(tempVideoPath, videoDuration, audioPath, coubPath);
+        }
+
+        private void Process(string videoPath, double videoDuration, string audioPath, string coubPath)
+        {
+            double audioDuration = GetDuration(audioPath);
             string listPath = Path.Combine(tempPath, "list.txt");
 
             if (audioDuration > videoDuration)
@@ -51,21 +68,10 @@ namespace Test
             }
         }
 
-        public void MakeCoub(string videoPath, double videoDuration, string audioPath, string coubPath)
-        {
-            MakeCoub(videoPath, 0, videoDuration, audioPath, coubPath);
-        }
-
-        public void MakeCoub(string videoPath, double videoStart, double videoDuration, string audioPath, string coubPath)
-        {
-            string tempVideoPath = Path.Combine(tempPath, "temp.mp4");
-            Cut(videoPath, videoStart, videoDuration, tempVideoPath);
-            MakeCoub(tempVideoPath, audioPath, coubPath);
-        }
 
         private void Cut(string videoPath, double start, double duration, string outputPath)
         {
-            string param = String.Format(@"-ss {1} -i {0} -t {2} -c:v copy -c:a copy {3}", videoPath, start, duration, outputPath);
+            string param = String.Format(@"-ss {1} -i {0} -t {2} -c:v copy -c:a copy -y {3}", videoPath, start, duration, outputPath);
             Execute(ffmpegPath, param);
         }
 
