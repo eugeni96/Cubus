@@ -13,32 +13,18 @@ namespace Test
 {
     class Program
     {
+        private const string FFMPEG_FOLDER = @"D:\Downloads\ffmpeg-20151028-git-dd36749-win64-shared\bin";
+
         static void Main(string[] args)
         {
-            string videoPath = @"C:\ffmpeg\bin\1.mp4";
+            string videoPath = @"D:\Downloads\input.avi";
             double videoStart = 0;
             double videoDuration = 15;
-            string audioPath = @"C:\ffmpeg\bin\1.mp3";
-            string outputPath = @"C:\ffmpeg\bin\3.mp4";
-            string tempPath = @"C:\ffmpeg\bin\temp.mp4";
-            string txtPath = @"C:\ffmpeg\bin\temp.txt";
+            string audioPath = @"D:\Downloads\input.mp3";
+            string outputPath = @"D:\Downloads\output.mp4";
 
-
-            double audioDuration = GetDuration(audioPath);
-            if (audioDuration > videoDuration)
-            {
-                int n = (int) (audioDuration/videoDuration);
-                Cut(videoPath, videoStart, videoDuration, tempPath);
-                string list = null;
-                using (StreamWriter file = new StreamWriter(txtPath))
-                {
-                    for (int i = 0; i <= n; i++)
-                    {
-                        file.WriteLine("file '{0}'\n", tempPath);
-                    }
-                }
-                ConcatAndReduce(txtPath,audioPath,outputPath);
-            }
+            CoubMaker maker = new CoubMaker(FFMPEG_FOLDER);
+            maker.MakeCoub(videoPath, audioPath, outputPath);
             Console.ReadLine();
         }
 
