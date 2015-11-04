@@ -15,7 +15,6 @@ namespace Test
         private string ffprobePath;
         private string tempPath = Path.GetTempPath();
 
-
         public CoubMaker(string ffmegExecutableFolder)
         {
             if (!Directory.Exists(ffmegExecutableFolder))
@@ -28,32 +27,31 @@ namespace Test
             ffprobePath = Path.Combine(ffmegExecutableFolder, "ffprobe.exe");
             if (!File.Exists(ffprobePath))
                 throw new ArgumentException("Provided folder doesn't contain  file ffprobe.exe or doesn't have required permission.", "ffmegExecutableFolder");
-   
         }
 
         public void MakeCoub(string videoPath, string audioPath, string coubPath)
         {
-            double videoDuration = GetDuration(videoPath);
-            Process(videoPath, videoDuration, audioPath, coubPath);
-        }
-
-        public void MakeCoub(string videoPath, double videoDuration, string audioPath, string coubPath)
-        {
-            MakeCoub(videoPath, 0, videoDuration, audioPath, coubPath);
+            MakeCoub(videoPath, 0, GetDuration(videoPath), audioPath, coubPath);
         }
 
         public void MakeCoub(string videoPath, double videoStart, double videoDuration, string audioPath, string coubPath)
         {
             string tempVideoPath = Path.Combine(tempPath, "temp.mp4");
-            Cut(videoPath, videoStart, videoDuration, tempVideoPath);
-            Process(tempVideoPath, videoDuration, audioPath, coubPath);
-        }
+            if ((Path.GetExtension(videoPath) == ".webm")&&(Path.GetExtension(videoPath) == ".flv"))                                        
+            {
+                ConvertToMp4AndCut(videoPath, videoStart, videoDuration, tempVideoPath);                           
+            }
+            else
+            {
+                Cut(videoPath, videoStart, videoDuration, tempVideoPath);
+            }
+            MakeCoub(tempVideoPath, videoDuration, audioPath, coubPath);
 
-        private void Process(string videoPath, double videoDuration, string audioPath, string coubPath)
+        }
+        public void MakeCoub(string videoPath, double videoDuration, string audioPath, string coubPath)
         {
             double audioDuration = GetDuration(audioPath);
             string listPath = Path.Combine(tempPath, "list.txt");
-
             if (audioDuration > videoDuration)
             {
                 int loops = (int)(audioDuration / videoDuration);
@@ -68,10 +66,21 @@ namespace Test
             }
         }
 
-
+        private void ConvertToMp4(string videoPath, string outputPath)
+        {
+            string param = String.Format(@"-i {0} -c:v libx264 -c:a aac -strict experimental -y {1}", videoPath, outputPath);
+            Execute(ffmpegPath, param);
+        }
         private void Cut(string videoPath, double start, double duration, string outputPath)
         {
             string param = String.Format("-ss \"{1}\" -i {0} -t {2} -c:v copy -c:a copy -y \"{3}\"", videoPath, start, duration, outputPath);
+            Execute(ffmpegPath, param);
+        }
+
+        private void ConvertToMp4AndCut(string videoPath, double start, double duration, string outputPath)
+        {
+            //slower than Cut
+            string param = String.Format(@"-ss {1} -i {0} -t {2} -c:v libx264 -c:a aac -strict experimental  -y {3}", videoPath, start, duration, outputPath);
             Execute(ffmpegPath, param);
         }
 
@@ -117,8 +126,7 @@ namespace Test
             var inf = new ProcessStartInfo(programPath, param)
             {
                 UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = true
+                RedirectStandardOutput = true
             };
             var prc = new Process();
             prc.StartInfo = inf;
