@@ -36,7 +36,7 @@ namespace Test
 
         public void MakeCoub(string videoPath, double videoStart, double videoDuration, string audioPath, string coubPath)
         {
-            string tempVideoPath = Path.Combine(tempPath, "temp.mp4");
+            string tempVideoPath = Path.ChangeExtension(Path.GetTempFileName(), ".mp4");
             if ((Path.GetExtension(videoPath) == ".webm")&&(Path.GetExtension(videoPath) == ".flv"))                                        
             {
                 ConvertToMp4AndCut(videoPath, videoStart, videoDuration, tempVideoPath);                           
@@ -48,6 +48,7 @@ namespace Test
             MakeCoub(tempVideoPath, videoDuration, audioPath, coubPath);
 
         }
+
         public void MakeCoub(string videoPath, double videoDuration, string audioPath, string coubPath)
         {
             double audioDuration = GetDuration(audioPath);
@@ -68,19 +69,21 @@ namespace Test
 
         private void ConvertToMp4(string videoPath, string outputPath)
         {
-            string param = String.Format(@"-i {0} -c:v libx264 -c:a aac -strict experimental -y {1}", videoPath, outputPath);
+            string param = String.Format("-i \"{0}\" -c:v libx264 -c:a aac -strict experimental -y \"{1}\"", videoPath, outputPath);
             Execute(ffmpegPath, param);
         }
         private void Cut(string videoPath, double start, double duration, string outputPath)
         {
-            string param = String.Format("-ss \"{1}\" -i {0} -t {2} -c:v copy -c:a copy -y \"{3}\"", videoPath, start, duration, outputPath);
+            string param = String.Format("-ss \"{1}\" -i {0} -t {2} -c:v copy -c:a copy -y \"{3}\"",
+                videoPath, start.ToString(CultureInfo.InvariantCulture), duration.ToString(CultureInfo.InvariantCulture), outputPath);
             Execute(ffmpegPath, param);
         }
 
         private void ConvertToMp4AndCut(string videoPath, double start, double duration, string outputPath)
         {
             //slower than Cut
-            string param = String.Format(@"-ss {1} -i {0} -t {2} -c:v libx264 -c:a aac -strict experimental  -y {3}", videoPath, start, duration, outputPath);
+            string param = String.Format("-ss {1} -i \"{0}\" -t {2} -c:v libx264 -c:a aac -strict experimental  -y \"{3}\"",
+                videoPath, start.ToString(CultureInfo.InvariantCulture), duration.ToString(CultureInfo.InvariantCulture), outputPath);
             Execute(ffmpegPath, param);
         }
 

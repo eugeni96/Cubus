@@ -17,14 +17,14 @@ namespace Test
 
         static void Main(string[] args)
         {
-            string videoPath = @"D:\Downloads\input.avi";
+            string videoPath = @"D:\Downloads\input.flv";
             double videoStart = 10;
             double videoDuration = 15;
             string audioPath = @"D:\Downloads\input.mp3";
             string outputPath = @"D:\Downloads\output.mp4";
 
             CoubMaker maker = new CoubMaker(FFMPEG_FOLDER);
-            maker.MakeCoub(videoPath, videoStart, videoDuration, audioPath, outputPath);
+            maker.MakeCoub(videoPath, audioPath, outputPath);
             Console.ReadLine();
         }
 

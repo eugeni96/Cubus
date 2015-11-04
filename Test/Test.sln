@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{D26E2DAE-2466-4EC1-B7C1-935C66F03BC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoubJob", "CoubJob\CoubJob.csproj", "{506027E3-40F5-4B27-8390-80F4E44E93E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoubMaintainanceJob", "CoubMaintainanceJob\CoubMaintainanceJob.csproj", "{6ABC0EBF-92A5-47C7-9EF3-899507A1D1EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D26E2DAE-2466-4EC1-B7C1-935C66F03BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D26E2DAE-2466-4EC1-B7C1-935C66F03BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D26E2DAE-2466-4EC1-B7C1-935C66F03BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{506027E3-40F5-4B27-8390-80F4E44E93E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{506027E3-40F5-4B27-8390-80F4E44E93E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{506027E3-40F5-4B27-8390-80F4E44E93E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{506027E3-40F5-4B27-8390-80F4E44E93E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ABC0EBF-92A5-47C7-9EF3-899507A1D1EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ABC0EBF-92A5-47C7-9EF3-899507A1D1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ABC0EBF-92A5-47C7-9EF3-899507A1D1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ABC0EBF-92A5-47C7-9EF3-899507A1D1EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
