@@ -93,6 +93,7 @@ footer {
     display: block;
     height: 15px;
     border: 1px solid transparent;
+    border-top: 5px solid #88bf1b;
     background-color: #000;
     text-align: center;
     vertical-align: text-top;
@@ -102,6 +103,24 @@ footer {
     right: 0;
     bottom: 0;
 }  
+
+.main-nav {
+    display: block;
+}
+
+.main-nav ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-nav ul li{
+    display: inline;
+    padding: 0;
+}
+
+.main-nav ul li a{
+    text-decoration: none;
+}
 
 /* Styles previes (_PreviewPartial)
 -----------------------------------------------------------*/
