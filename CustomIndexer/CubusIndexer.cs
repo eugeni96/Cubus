@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adam.Core;
+using Adam.Core;                                                                                                        
 using Adam.Core.Classifications;
 using Adam.Core.Indexer;
 using Adam.Core.Records;
@@ -24,11 +24,11 @@ namespace CustomIndexer
 
                 indexer.Path = "D:\\ADAMWorkingTraining\\Files";
                 indexer.CatalogMode = CatalogMode.Capture;
-                indexer.ClassifyFolders = true;
-                indexer.ClassifyFoldersDepth = 0;
+                indexer.ClassifyFolders = false;
+                //indexer.ClassifyFoldersDepth = 0;
 
                 Classification classification = new Classification(app);
-                if(classification.TryLoad("Cubus") == TryLoadResult.NotFound)
+                if(classification.TryLoad(new ClassificationPath("Cubus")) == TryLoadResult.NotFound)
                     throw new ItemNotFoundException("root catalog was not found");
 
                 indexer.ClassifyFoldersRoot = classification.Id;
@@ -39,6 +39,8 @@ namespace CustomIndexer
                 indexer.Save();
                 
             }
+            
         }
+        
     }
 }
