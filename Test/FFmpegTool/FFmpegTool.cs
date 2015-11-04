@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Test
+namespace FFmpegTool
 {
     public abstract class FFmpegTool
     {
@@ -17,11 +13,11 @@ namespace Test
         protected FFmpegTool(string ffmegExecutableFolder)
         {
             if (!Directory.Exists(ffmegExecutableFolder))
-	            throw new ArgumentException("Provided folder doesn't exists or doesn't have required permission",
+                throw new ArgumentException("Provided folder doesn't exists or doesn't have required permission",
                     "ffmegExecutableFolder");
             ffmpegPath = Path.Combine(ffmegExecutableFolder, "ffmpeg.exe");
             if (!File.Exists(ffmpegPath))
-	            throw new ArgumentException("Provided folder doesn't contain  file ffmpeg.exe or doesn't have required permission.",
+                throw new ArgumentException("Provided folder doesn't contain  file ffmpeg.exe or doesn't have required permission.",
                     "ffmegExecutableFolder");
             ffprobePath = Path.Combine(ffmegExecutableFolder, "ffprobe.exe");
             if (!File.Exists(ffprobePath))

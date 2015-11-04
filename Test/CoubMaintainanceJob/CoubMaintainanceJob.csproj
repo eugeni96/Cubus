@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Test\Test.csproj">
-      <Project>{d26e2dae-2466-4ec1-b7c1-935c66f03bc2}</Project>
-      <Name>Test</Name>
+    <ProjectReference Include="..\FFmpegTool\FFmpegTool.csproj">
+      <Project>{93981cef-98b8-4682-8b96-d42e57880751}</Project>
+      <Name>FFmpegTool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
