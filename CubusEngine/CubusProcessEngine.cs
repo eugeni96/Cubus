@@ -1,17 +1,14 @@
-﻿using Adam.Core;
-using Adam.Core.Fields;
-using Adam.Core.Indexer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
+using Adam.Core;
 using Adam.Core.Classifications;
+using Adam.Core.Fields;
+using Adam.Core.Indexer;
 
-namespace CustomIndexer
+namespace CubusEngine
 {
     public class CubusProcessEngine : IndexMaintenanceJob
     {
@@ -53,14 +50,16 @@ namespace CustomIndexer
             String metaFilePath = System.IO.Path.ChangeExtension(e.Path, ".cm");
             if (!System.IO.File.Exists(metaFilePath))
                 return;
-            Dictionary<String, bool> fields = new Dictionary<string, bool>();
+            Dictionary<String, bool> definitionNames = new Dictionary<string, bool>();
             foreach (Field field in e.Record.Fields.MyLanguage)
-                fields.Add(field.ValuePropertyName, false);
-            var doc = new XmlDocument();
-            doc.Load(metaFilePath);
-            foreach (XmlNode node in doc.ChildNodes)
-                if (fields.Keys.Contains(node.Name))
-                    e.Record.Fields.GetField<TextField>(node.Name).SetValue(node.Value);
+                definitionNames.Add(field.Container.Definition.Name, false);
+            var xmlMeta = new XmlDocument();
+            xmlMeta.Load(metaFilePath);
+            XmlNodeList nodes = xmlMeta.GetElementsByTagName("item").Item(0).ChildNodes;
+            foreach (XmlNode node in nodes)
+                if (definitionNames.Keys.Contains(node.Name))
+                    e.Record.Fields.GetField<TextField>(node.Name).SetValue(node.InnerText);
+            System.IO.File.Delete(metaFilePath);
         }
     }
 }

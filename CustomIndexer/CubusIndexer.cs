@@ -28,13 +28,15 @@ namespace CustomIndexer
                 indexer.ClassifyFoldersDepth = 0;
 
                 Classification classification = new Classification(app);
-                if(classification.TryLoad("/Cubus") == TryLoadResult.NotFound)
+                if(classification.TryLoad("Cubus") == TryLoadResult.NotFound)
                     throw new ItemNotFoundException("root catalog was not found");
 
                 indexer.ClassifyFoldersRoot = classification.Id;
                 indexer.Enabled = true;
 
                 indexer.JobThresholdTimeout = new TimeSpan(0,0,10);
+
+                indexer.Save();
                 
             }
         }

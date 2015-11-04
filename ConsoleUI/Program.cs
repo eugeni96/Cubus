@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Adam.Core;
+using CustomIndexer;
 
 namespace ConsoleUI
 {
@@ -19,7 +20,8 @@ namespace ConsoleUI
                 throw new UnauthorizedAccessException();
             }
 
-            CustomIndexer.ClassificationInitializer.InitializeSpecifications(app);
+            //CustomIndexer.ClassificationInitializer.InitializeSpecifications(app);
+            CubusIndexer.AddIndexer(app);
         }
     }
 }
