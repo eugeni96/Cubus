@@ -68,20 +68,14 @@ body, header,footer {
 }
 
 body{
-    background-color: #0074af;
-    padding: 30px 0 15px 0;
+    background-color: #0092BC;
+    padding-bottom:15px;
 }
 
 header {
     display: block;
     text-align: center;
-    background-color: #000;
     vert-align: middle;
-    border-bottom: 5px solid #88bf1b;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
 }  
 
 .logo {
@@ -125,6 +119,10 @@ footer {
 /* Styles previes (_PreviewPartial)
 -----------------------------------------------------------*/
 
+.coub-container {
+    text-align: center;
+}
+
 .previews-container {
     
 }
@@ -136,3 +134,24 @@ footer {
 .previews-container * img{
     height: 50px;
 }
+
+/**/
+
+.media-container {
+    width: 45%;
+    background-color: #E1E1E1;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+}
+
+.video-container {
+    float: left;
+}
+
+.audio-container {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
