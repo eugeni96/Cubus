@@ -19,12 +19,12 @@ namespace Test
         {
             string videoPath = @"D:\Downloads\input.flv";
             double videoStart = 10;
-            double videoDuration = 15;
+            double videoDuration = 15.5;
             string audioPath = @"D:\Downloads\input.mp3";
             string outputPath = @"D:\Downloads\output.mp4";
 
             CoubMaker maker = new CoubMaker(FFMPEG_FOLDER);
-            maker.MakeCoub(videoPath, audioPath, outputPath);
+            maker.MakeCoub(videoPath, videoStart, videoDuration, audioPath, outputPath);
             Console.ReadLine();
         }
 

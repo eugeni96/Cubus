@@ -24,7 +24,7 @@ namespace Test
         public void MakeCoub(string videoPath, double videoStart, double videoDuration, string audioPath, string coubPath)
         {
             string tempVideoPath = Path.ChangeExtension(Path.GetTempFileName(), ".mp4");
-            if ((Path.GetExtension(videoPath) == ".webm")&&(Path.GetExtension(videoPath) == ".flv"))                                        
+            if ((Path.GetExtension(videoPath) == ".webm")||(Path.GetExtension(videoPath) == ".flv"))                                        
             {
                 ConvertToMp4AndCut(videoPath, videoStart, videoDuration, tempVideoPath);                           
             }
