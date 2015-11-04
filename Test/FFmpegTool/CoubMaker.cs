@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test
+namespace FFmpegTool
 {
     public class CoubMaker : FFmpegTool
     {
@@ -24,9 +23,9 @@ namespace Test
         public void MakeCoub(string videoPath, double videoStart, double videoDuration, string audioPath, string coubPath)
         {
             string tempVideoPath = Path.ChangeExtension(Path.GetTempFileName(), ".mp4");
-            if ((Path.GetExtension(videoPath) == ".webm")||(Path.GetExtension(videoPath) == ".flv"))                                        
+            if ((Path.GetExtension(videoPath) == ".webm") || (Path.GetExtension(videoPath) == ".flv"))
             {
-                ConvertToMp4AndCut(videoPath, videoStart, videoDuration, tempVideoPath);                           
+                ConvertToMp4AndCut(videoPath, videoStart, videoDuration, tempVideoPath);
             }
             else
             {
@@ -97,7 +96,7 @@ namespace Test
             return duration;
         }
 
-        private void ConcatVideoAndReduce(string txtPath, string audioPath,  string outputPath)
+        private void ConcatVideoAndReduce(string txtPath, string audioPath, string outputPath)
         {
             string param = String.Format("-i \"{1}\" -f concat -i \"{0}\" -c:v copy -c:a copy -y -shortest \"{2}\"",
                 txtPath, audioPath, outputPath);
@@ -110,6 +109,6 @@ namespace Test
                 txtPath, videoPath, outputPath);
             Execute(ffmpegPath, param);
         }
-      
+
     }
 }
