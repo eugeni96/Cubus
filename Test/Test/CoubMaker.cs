@@ -60,7 +60,7 @@ namespace Test
         }
         private void Cut(string videoPath, double start, double duration, string outputPath)
         {
-            string param = String.Format(@"-ss {1} -i {0} -t {2} -c:v copy -c:a copy -y {3}", videoPath, start, duration, outputPath);
+            string param = String.Format("-ss \"{1}\" -i {0} -t {2} -c:v copy -c:a copy -y \"{3}\"", videoPath, start, duration, outputPath);
             Execute(ffmpegPath, param);
         }
 
@@ -84,7 +84,7 @@ namespace Test
 
         private double GetDuration(string mediaPath)
         {
-            string param = String.Format(@"-v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 {0}", mediaPath);
+            string param = String.Format("-v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{0}\"", mediaPath);
             StreamReader output = Execute(ffprobePath, param);
             double duration = 0.0;
             if (!output.EndOfStream)
@@ -96,14 +96,14 @@ namespace Test
 
         private void ConcatVideoAndReduce(string txtPath, string audioPath,  string outputPath)
         {
-            string param = String.Format("-i {1} -f concat -i {0} -c:v copy -c:a copy -y -shortest {2}",
+            string param = String.Format("-i \"{1}\" -f concat -i \"{0}\" -c:v copy -c:a copy -y -shortest \"{2}\"",
                 txtPath, audioPath, outputPath);
             Execute(ffmpegPath, param);
         }
 
         private void ConcatAudioAndReduce(string txtPath, string videoPath, string outputPath)
         {
-            string param = String.Format(" -f concat -i {0} -i {1} -c:v copy -c:a copy -y -shortest {2}",
+            string param = String.Format(" -f concat -i \"{0}\" -i \"{1}\" -c:v copy -c:a copy -y -shortest \"{2}\"",
                 txtPath, videoPath, outputPath);
             Execute(ffmpegPath, param);
         }
