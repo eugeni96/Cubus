@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoubMaker.cs" />
+    <Compile Include="FFmpegTool.cs" />
+    <Compile Include="PreviewMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

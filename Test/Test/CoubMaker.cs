@@ -9,24 +9,11 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    public class CoubMaker
+    public class CoubMaker : FFmpegTool
     {
-        private string ffmpegPath;
-        private string ffprobePath;
-        private string tempPath = Path.GetTempPath();
-
         public CoubMaker(string ffmegExecutableFolder)
+            : base(ffmegExecutableFolder)
         {
-            if (!Directory.Exists(ffmegExecutableFolder))
-	            throw new ArgumentException("Provided folder doesn't exists or doesn't have required permission",
-                    "ffmegExecutableFolder");
-            ffmpegPath = Path.Combine(ffmegExecutableFolder, "ffmpeg.exe");
-            if (!File.Exists(ffmpegPath))
-	            throw new ArgumentException("Provided folder doesn't contain  file ffmpeg.exe or doesn't have required permission.",
-                    "ffmegExecutableFolder");
-            ffprobePath = Path.Combine(ffmegExecutableFolder, "ffprobe.exe");
-            if (!File.Exists(ffprobePath))
-                throw new ArgumentException("Provided folder doesn't contain  file ffprobe.exe or doesn't have required permission.", "ffmegExecutableFolder");
         }
 
         public void MakeCoub(string videoPath, string audioPath, string coubPath)
@@ -120,21 +107,6 @@ namespace Test
                 txtPath, videoPath, outputPath);
             Execute(ffmpegPath, param);
         }
-
-        private StreamReader Execute(string programPath, string param)
-        {
-            var inf = new ProcessStartInfo(programPath, param)
-            {
-                UseShellExecute = false,
-                RedirectStandardOutput = true
-            };
-            var prc = new Process();
-            prc.StartInfo = inf;
-            prc.Start();
-            prc.WaitForExit();
-            return prc.StandardOutput;
-        }
-
-        
+      
     }
 }
