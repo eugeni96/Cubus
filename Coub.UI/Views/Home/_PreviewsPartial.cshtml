@@ -6,7 +6,9 @@
         {
             <li>
                 <input id="preview-@i" type="radio" hidden/>
-                <label for="preview-@i"><img class="img-preview" src="data:image/jpg;base64, @Model[i]" alt="AlternateText_@i"/></label>
+                <label for="preview-@i">
+                    <img class="img-preview" src="data:image/jpg;base64, @Model[i]" alt="AlternateText_@i"/>
+                </label>
             </li>
         }
     </ul>

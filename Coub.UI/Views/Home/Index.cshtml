@@ -7,34 +7,60 @@
 
 <div class="coub-container">
     
-        <video width="320" height="240">
+        <video id="coub-video" width="50%" height="auto" controls>
             <source src="/Content/videos/video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
             Your browser does not support the video tag.
         </video> 
    
 </div>
 
-<nav class="main-nav">
+<div class="main-nav">
     <ul>
-        <li>@Ajax.ActionLink("ShowPrevies", "GetPreviews", "Home", null, new AjaxOptions() { UpdateTargetId = "previews", LoadingElementId = "loading-indicator" })</li>
-        <li>@Ajax.ActionLink("ShowPrevies", "GetPreviews", "Home", null, new AjaxOptions() { UpdateTargetId = "previews", LoadingElementId = "loading-indicator" })</li>
+        <li>
+            @Ajax.ActionLink("Generate", "GetPreviews", "Home", null, new AjaxOptions() {UpdateTargetId = "previews", LoadingElementId = "video-list-loader"}, new {@class = "a-button-big"})
+        </li>
+        <li>
+            @Ajax.ActionLink("Save", "GetPreviews", "Home", null, new AjaxOptions() { UpdateTargetId = "previews", LoadingElementId = "video-list-loader" }, new { @class = "a-button-big" })
+        </li>
     </ul>
-</nav>
+</div>
 
 <div>
-    <div id="previews" class="media-container video-container">
-        <p>Empty</p>
+    <div class="media-container float-left">
+
+        <div class="media-list-header">
+            <span>MOVIES</span>
+            <img id="video-list-loader" src="/Content/images/loader2.gif" style="display: none; height: 100%"/>
+            @Ajax.ActionLink("Update", "GetPreviews", "Home", null, new AjaxOptions() {UpdateTargetId = "previews", LoadingElementId = "video-list-loader"}, new {@class = "a-button float-right"})
+        </div>
+
+        <div class="media-content-wrapper">
+            <div id="previews" class="media-list-container">
+
+            </div>
+        </div>
     </div>
 
-    <div id="audios" class="media-container audio-container">
-        <p>Empty</p>
+    <div id="audios" class="media-container float-right">
+
+        <div class="media-list-header">
+            <span>SOUNDS</span>
+            <img id="audio-list-loader" src="/Content/images/loader2.gif" style="display: none; height: 100%"/>
+            @Ajax.ActionLink("Update", "GetPreviews", "Home", null, new AjaxOptions() {UpdateTargetId = "previews", LoadingElementId = "audio-list-loader"}, new {@class = "a-button float-right"})
+        </div>
+
+        <div class="media-content-wrapper">
+            <div class="media-list-container">
+
+            </div>
+        </div>
     </div>
     <div class="clear"></div>
 </div>
 
-
-
-
+@*<script>
+    document.getElementById("coub-video").addEventListener("click",function (){})
+</script>*@
 
 
 
