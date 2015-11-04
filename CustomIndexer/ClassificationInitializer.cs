@@ -20,9 +20,9 @@ namespace CustomIndexer
                 
                 classification.AddNew();
                 classification.Name = "Cubus";
-                classification.Save();
+                
 
-                List<String> fieldList = new List<string>() { "Name", "Author", "Dicription" };
+                List<String> fieldList = new List<string>() { "Name", "Author", "Description" };
                 FieldDefinitionHelper fieldDefinitionHelper = new FieldDefinitionHelper(app);
                 foreach (var field in fieldList)
                 {
@@ -36,13 +36,15 @@ namespace CustomIndexer
 
                 foreach (var field in fieldList)
                 {
-                    var guid = fieldDefinitionHelper.GetId("Creator");
+                    var guid = fieldDefinitionHelper.GetId(field);
                     if (guid != null)
                     {
                         Guid id = (Guid) guid;
                         classification.RegisteredFields.Add(id);
                     }
                 }
+
+                classification.Save();
 
                 Classification video = new Classification(app);
                 video.AddNew(classification.Id);

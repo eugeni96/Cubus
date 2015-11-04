@@ -40,12 +40,12 @@ namespace CubusEngine
             if (videoExtensions.Any(x => x.Equals(Path.GetExtension(e.Path))))
             {
                 e.Record.Classifications.Add(new ClassificationPath("/Cubus/Video"));
+                
             }
             if (audioExtensions.Any(x => x.Equals(Path.GetExtension(e.Path))))
             {
                 e.Record.Classifications.Add(new ClassificationPath("/Cubus/Audio"));
             }
-
 
             String metaFilePath = System.IO.Path.ChangeExtension(e.Path, ".cm");
             if (!System.IO.File.Exists(metaFilePath))
@@ -57,7 +57,7 @@ namespace CubusEngine
             xmlMeta.Load(metaFilePath);
             XmlNodeList nodes = xmlMeta.GetElementsByTagName("item").Item(0).ChildNodes;
             foreach (XmlNode node in nodes)
-                if (definitionNames.Keys.Contains(node.Name))
+                if (definitionNames.Keys.Any(x => x.Equals(node.Name, StringComparison.OrdinalIgnoreCase)))
                     e.Record.Fields.GetField<TextField>(node.Name).SetValue(node.InnerText);
             System.IO.File.Delete(metaFilePath);
         }

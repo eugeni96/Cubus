@@ -34,6 +34,7 @@ namespace CustomIndexer
                 indexer.ClassifyFoldersRoot = classification.Id;
                 indexer.Enabled = true;
 
+                indexer.JobPriority = 8;
                 indexer.JobThresholdTimeout = new TimeSpan(0,0,10);
 
                 indexer.Save();

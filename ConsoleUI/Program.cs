@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Adam.Core;
+using Adam.Core.Fields;
+using Adam.Core.Search;
 using CustomIndexer;
 
 namespace ConsoleUI
@@ -20,8 +22,9 @@ namespace ConsoleUI
                 throw new UnauthorizedAccessException();
             }
 
-            //CustomIndexer.ClassificationInitializer.InitializeSpecifications(app);
-            CubusIndexer.AddIndexer(app);
+            CustomIndexer.ClassificationInitializer.InitializeSpecifications(app);
+
+            //CubusIndexer.AddIndexer(app);
         }
     }
 }
