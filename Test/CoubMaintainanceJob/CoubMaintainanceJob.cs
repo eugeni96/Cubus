@@ -9,7 +9,6 @@ namespace CoubMaintainanceJob
 {
     public class CoubMaintainanceJob : ManualMaintenanceJob 
     {
-
         public CoubMaintainanceJob(Application app)
             : base(app)
         {
@@ -47,22 +46,15 @@ namespace CoubMaintainanceJob
             string videoPath = "";
             double start = 0;
             double duration = 0;
-            reader.Read();
-            reader.Read();
-            reader.Read();
-		    audioPath = reader.Value.Trim();
-            reader.Read();
-            reader.Read();
-            reader.Read();
-            videoPath = reader.Value.Trim();
-            reader.Read();
-            reader.Read();
-            reader.Read();
-            Double.TryParse(reader.Value.Trim(), out start);
-            reader.Read();
-            reader.Read();
-            reader.Read();
-            Double.TryParse(reader.Value.Trim(), out duration);
+            while (reader.Name != "target")
+            {
+                reader.Read();
+            }
+
+            audioPath = reader["audioPath"];
+            videoPath = reader["videoPath"];
+            Double.TryParse(reader["videoStart"], out start);
+            Double.TryParse(reader["videoDuration"], out duration);
             return new CoubMaintainanceTarget(audioPath, videoPath, start, duration);
         }
 
@@ -73,10 +65,12 @@ namespace CoubMaintainanceJob
         protected override void OnSerializeTarget(MaintenanceTarget target, System.Xml.XmlWriter writer)
         {
             CoubMaintainanceTarget t = (CoubMaintainanceTarget)target;
-            writer.WriteElementString("audioPath", t.AudioPath);
-            writer.WriteElementString("videoPath", t.VideoPath);
-            writer.WriteElementString("videoStart", t.VideoStart.ToString());
-            writer.WriteElementString("videoDuration", t.VideoDuration.ToString());
+            writer.WriteStartElement("target");
+            writer.WriteAttributeString("audioPath", t.AudioPath);
+            writer.WriteAttributeString("videoPath", t.VideoPath);
+            writer.WriteAttributeString("videoStart", t.VideoStart.ToString());
+            writer.WriteAttributeString("videoDuration", t.VideoDuration.ToString());
+            writer.WriteEndElement();
         }
 
         protected override Type TargetType
