@@ -23,8 +23,8 @@ namespace CoubMaintainanceJob
         public string Description { get; set; }
         public string AudioPath { get; private set; }
         public string VideoPath { get; private set; }
-        public double? VideoStart { get; private set; }
-        public double? VideoDuration { get; private set; }
+        public double VideoStart { get; private set; }
+        public double VideoDuration { get; private set; }
 
 
         public override long Impact

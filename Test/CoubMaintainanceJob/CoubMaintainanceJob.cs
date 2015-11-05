@@ -25,11 +25,7 @@ namespace CoubMaintainanceJob
             Record record = new Record(App);
             foreach (CoubMaintainanceTarget target in Targets)
             {
-                if (target.VideoStart.HasValue && target.VideoDuration.HasValue)
-                    maker.MakeCoub
-                        (target.VideoPath, target.VideoStart.Value, target.VideoDuration.Value, target.AudioPath, tempFile);                        
-                else
-                    maker.MakeCoub(target.VideoPath, target.AudioPath, tempFile);
+                maker.MakeCoub(target.VideoPath, target.VideoStart, target.VideoDuration, target.AudioPath, tempFile);                        
                 AddRecord(record, target, tempFile);
             }
         }
@@ -58,19 +54,16 @@ namespace CoubMaintainanceJob
         {
             string audioPath = "";
             string videoPath = "";
-            double start = 0;
-            double duration = 0;
+            double start;
+            double duration;
             while (reader.Name != "target")
-            {
                 reader.Read();
-            }
 
             audioPath = reader["audioPath"];
             videoPath = reader["videoPath"];
-            videoPath = reader["outputPath"];
             Double.TryParse(reader["videoStart"], out start);
             Double.TryParse(reader["videoDuration"], out duration);
-            var target = new CoubMaintainanceTarget(audioPath, videoPath, start, duration);
+            var target = new CoubMaintainanceTarget(audioPath, videoPath, start, duration);             
             target.Name = reader["name"];
             target.Author = reader["author"];
             target.Description = reader["description"];
