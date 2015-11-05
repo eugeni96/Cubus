@@ -10,11 +10,6 @@ namespace FFmpegTool
 {
     public class CoubMaker : FFmpegTool
     {
-        public CoubMaker(string ffmegExecutableFolder)
-            : base(ffmegExecutableFolder)
-        {
-        }
-
         public void MakeCoub(string videoPath, string audioPath, string coubPath)
         {
             MakeCoub(videoPath, 0, GetDuration(videoPath), audioPath, coubPath);

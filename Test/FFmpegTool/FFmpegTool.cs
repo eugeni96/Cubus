@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 
@@ -10,16 +11,18 @@ namespace FFmpegTool
         protected string ffprobePath;
         protected string tempPath = Path.GetTempPath();
 
-        protected FFmpegTool(string ffmegExecutableFolder)
+        protected FFmpegTool()
         {
-            if (!Directory.Exists(ffmegExecutableFolder))
+            string ffmpegExecutableFolder = ConfigurationSettings.AppSettings["ffmpegExecutableFolder"];
+
+            if (!Directory.Exists(ffmpegExecutableFolder))
                 throw new ArgumentException("Provided folder doesn't exists or doesn't have required permission",
                     "ffmegExecutableFolder");
-            ffmpegPath = Path.Combine(ffmegExecutableFolder, "ffmpeg.exe");
+            ffmpegPath = Path.Combine(ffmpegExecutableFolder, "ffmpeg.exe");
             if (!File.Exists(ffmpegPath))
                 throw new ArgumentException("Provided folder doesn't contain  file ffmpeg.exe or doesn't have required permission.",
                     "ffmegExecutableFolder");
-            ffprobePath = Path.Combine(ffmegExecutableFolder, "ffprobe.exe");
+            ffprobePath = Path.Combine(ffmpegExecutableFolder, "ffprobe.exe");
             if (!File.Exists(ffprobePath))
                 throw new ArgumentException("Provided folder doesn't contain  file ffprobe.exe or doesn't have required permission.", "ffmegExecutableFolder");
         }

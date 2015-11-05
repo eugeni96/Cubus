@@ -15,13 +15,10 @@ namespace CoubMaintainanceJob
         {
         }
 
-
-
         protected override void OnExecute()
         {
-            CoubMaker maker = new CoubMaker(@"D:\Downloads\ffmpeg-20151028-git-dd36749-win64-shared\bin");
+            CoubMaker maker = new CoubMaker();
             string tempFile = App.GetTemporaryFile("mp4");            
-
             Record record = new Record(App);
             foreach (CoubMaintainanceTarget target in Targets)
             {
