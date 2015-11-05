@@ -133,8 +133,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CoubModel.cs" />
-    <Compile Include="Models\RepositoryBase.cs" />
+    <Compile Include="Models\MediaSetViewModel.cs" />
+    <Compile Include="Models\MediaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,7 +227,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\_PreviewsPartial.cshtml" />
+    <Content Include="Views\Home\_VideoListPartial.cshtml" />
     <Content Include="Views\Home\_TestView.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +235,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Coub.Domain\Coub.Domain.csproj">
+      <Project>{09419b92-15e7-47f0-be64-4ec2865d0f93}</Project>
+      <Name>Coub.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

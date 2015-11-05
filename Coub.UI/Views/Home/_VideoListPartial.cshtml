@@ -1,0 +1,17 @@
+﻿@model Coub.UI.Models.MediaSetViewModel
+
+<div>
+    <ul>
+        @for (int i = 0; i < Model.MediaViewModels.Count; i++)
+        {
+            <li>
+                <input id="prev-@Model.MediaViewModels[i].Id" type="radio" hidden name="videoRecId" value="@Model.MediaViewModels[i].Id" />
+                <label for="prev-@Model.MediaViewModels[i].Id">
+                    <img class="img-preview"
+                         src="@Url.Action("GetRecordVideoPreview", "Home", new { id = @Model.MediaViewModels[i].Id })"
+                         alt="preview" />
+                </label>
+            </li>
+        }
+    </ul>
+</div>

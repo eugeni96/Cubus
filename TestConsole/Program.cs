@@ -29,7 +29,6 @@ namespace TestConsole
             Guid.TryParse("46e678e9-24af-4364-8926-a54600dcf188", out recId);
             rec.Load(recId);
             string s = rec.Files.LatestMaster.Path;
-
             Console.WriteLine(s);
             Console.ReadLine();
         }

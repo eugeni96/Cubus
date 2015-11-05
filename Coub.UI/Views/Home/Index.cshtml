@@ -31,7 +31,7 @@
         <div class="media-list-header">
             <span>MOVIES</span>
             <img id="video-list-loader" src="/Content/images/loader2.gif" style="display: none; height: 100%"/>
-            @Ajax.ActionLink("Update", "GetPreviews", "Home", null, new AjaxOptions() {UpdateTargetId = "previews", LoadingElementId = "video-list-loader"}, new {@class = "a-button float-right"})
+            @Ajax.ActionLink("Update", "GetVideoItemList", "Home", null, new AjaxOptions() {UpdateTargetId = "previews", LoadingElementId = "video-list-loader"}, new {@class = "a-button float-right"})
         </div>
 
         <div class="media-content-wrapper">

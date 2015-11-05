@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coub.UI", "Coub.UI\Coub.UI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{11BE7DE5-F6DD-4893-82D5-791D498AA5FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coub.Domain", "Coub.Domain\Coub.Domain.csproj", "{09419B92-15E7-47F0-BE64-4EC2865D0F93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{11BE7DE5-F6DD-4893-82D5-791D498AA5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11BE7DE5-F6DD-4893-82D5-791D498AA5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11BE7DE5-F6DD-4893-82D5-791D498AA5FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09419B92-15E7-47F0-BE64-4EC2865D0F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09419B92-15E7-47F0-BE64-4EC2865D0F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09419B92-15E7-47F0-BE64-4EC2865D0F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09419B92-15E7-47F0-BE64-4EC2865D0F93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Net;
 using System.Net.Mime;
 using System.Security.Cryptography;
 using System.Web;
@@ -10,6 +12,8 @@ using Adam.Core.Classifications;
 using Adam.Core.Orders;
 using Adam.Core.Records;
 using Adam.Core.Search;
+using Coub.Domain.ConcreteRepositories;
+using Coub.UI.Models;
 
 
 namespace Coub.UI.Controllers
@@ -33,22 +37,38 @@ namespace Coub.UI.Controllers
             return View();
         }
 
-        public ActionResult GetPreviews()
+        public ActionResult GetVideoItemList()
         {
-            List<string> model = GetByte64Previews();
-            return PartialView("_PreviewsPartial", model);
+            RecordRepository recordRepository = new RecordRepository((Application)Session["AdamApp"]);
+            string configClassificationPath = ConfigurationManager.AppSettings["AdamCoubusVideoClassification"];
+            var recordCollection = recordRepository.GetRecordCollectionByClassificationNamePath(configClassificationPath);
+            MediaSetViewModel model = new MediaSetViewModel(recordCollection);
+
+            return PartialView("_VideoListPartial", model);
         }
 
-        public ActionResult GetTestString()
+        public FileContentResult GetRecordVideoPreview(Guid recordId)
         {
-            return View("_TestView",(object)"asd");
+            RecordRepository recordRepository = new RecordRepository((Application)Session["AdamApp"]);
+            byte[] previewFileBytes = recordRepository.Get(recordId).Files.LatestMaster.GetPreview().GetBytes();
+            
+            return new FileContentResult(previewFileBytes, "image/jpeg");
         }
+
+
+
+        
+
+        
+
+
+        #region Temp
 
         private List<string> GetByte64Previews()
         {
             RecordCollection recordCollection = new RecordCollection((Application)Session["AdamApp"]);
             Adam.Core.Search.SearchExpression se = new Adam.Core.Search.SearchExpression("File.Version.Extension = jpg");
-            
+
             recordCollection.Load(se);
             List<string> base64Previews = new List<string>();
             byte[] tempBytes;
@@ -60,9 +80,6 @@ namespace Coub.UI.Controllers
 
             return base64Previews;
         }
-
-
-        #region Temp
 
         public FileContentResult GetFile()
         {
