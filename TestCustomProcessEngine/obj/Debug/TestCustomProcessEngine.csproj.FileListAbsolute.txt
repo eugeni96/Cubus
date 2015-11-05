@@ -1,0 +1,5 @@
+c:\users\tlalok\documents\visual studio 2013\Projects\TestCustomProcessEngine\TestCustomProcessEngine\bin\Debug\TestCustomProcessEngine.dll
+c:\users\tlalok\documents\visual studio 2013\Projects\TestCustomProcessEngine\TestCustomProcessEngine\bin\Debug\TestCustomProcessEngine.pdb
+c:\users\tlalok\documents\visual studio 2013\Projects\TestCustomProcessEngine\TestCustomProcessEngine\obj\Debug\TestCustomProcessEngine.dll
+c:\users\tlalok\documents\visual studio 2013\Projects\TestCustomProcessEngine\TestCustomProcessEngine\obj\Debug\TestCustomProcessEngine.pdb
+c:\users\tlalok\documents\visual studio 2013\Projects\TestCustomProcessEngine\TestCustomProcessEngine\obj\Debug\TestCustomProcessEngine.csprojResolveAssemblyReference.cache
