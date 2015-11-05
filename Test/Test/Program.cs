@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using FFmpegTool;
+using FFmpegTool = FFmpegTool.FFmpegTool;
 
 namespace Test
 {
@@ -23,8 +24,8 @@ namespace Test
             double videoDuration = 15.5;
             string audioPath = @"D:\Downloads\input.mp3";
             string outputPath = @"D:\Downloads\output.mp4";
-
-            CoubMaker maker = new CoubMaker(FFMPEG_FOLDER);
+            
+            CoubMaker maker = new CoubMaker();
             maker.MakeCoub(videoPath, videoStart, videoDuration, audioPath, outputPath);
             Console.ReadLine();
         }
