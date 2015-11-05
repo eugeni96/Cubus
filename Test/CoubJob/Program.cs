@@ -33,8 +33,9 @@ namespace CoubJob
             string audioPath = record.Files.LatestMaster.Path;
 
             MaintenanceManager manager = new MaintenanceManager(app);
-            
-            CoubMaintainanceTarget target = new CoubMaintainanceTarget(audioPath, videoPath, 0, 8.8);
+            CoubMaintainanceTarget target = new CoubMaintainanceTarget(audioPath, videoPath);
+            target.Name = "Something";
+            target.Author = "Someone";
 
             CoubMaintainanceJob.CoubMaintainanceJob job = new CoubMaintainanceJob.CoubMaintainanceJob(app);
             job.AddNew();
@@ -42,8 +43,7 @@ namespace CoubJob
             job.Priority = 1;
             job.Save();
             manager.JobIds.Add(job.Id);
-            manager.Execute();
-           
+            manager.Execute();           
 
             Console.ReadLine();
 
