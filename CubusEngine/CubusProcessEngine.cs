@@ -40,7 +40,6 @@ namespace CubusEngine
             if (videoExtensions.Any(x => x.Equals(Path.GetExtension(e.Path))))
             {
                 e.Record.Classifications.Add(new ClassificationPath("/Cubus/Video"));
-                
             }
             if (audioExtensions.Any(x => x.Equals(Path.GetExtension(e.Path))))
             {

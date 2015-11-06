@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Adam.Core, Version=5.4.0.0, Culture=neutral, PublicKeyToken=63f11f167f68d05b, processorArchitecture=MSIL" />
+    <Reference Include="Adam.Tools, Version=5.4.0.0, Culture=neutral, PublicKeyToken=63f11f167f68d05b, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CubusEngine\CubusEngine.csproj">
+      <Project>{e30c1ddf-07b3-4b16-84d4-ba8d8ae137ca}</Project>
+      <Name>CubusEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomIndexer\CustomIndexer.csproj">
       <Project>{6573c5ac-a744-4232-9956-1381f7bd41f9}</Project>
       <Name>CustomIndexer</Name>

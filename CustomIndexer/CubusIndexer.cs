@@ -37,6 +37,8 @@ namespace CustomIndexer
                 indexer.JobPriority = 8;
                 indexer.JobThresholdTimeout = new TimeSpan(0,0,10);
 
+                indexer.FileTypeRestriction = FileTypeRestriction.OnlyKnown;
+
                 indexer.Save();
                 
             }
