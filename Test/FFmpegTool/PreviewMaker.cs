@@ -14,7 +14,13 @@ namespace FFmpegTool
         }
         public void GetPreview(string videoPath, string outputPath)
         {
-            string param = String.Format(" -i {0} -ss 00:00:1.0 -vframes 1 {1}", videoPath, outputPath);
+            string param = String.Format(" -i \"{0}\" -ss 00:00:1.0 -vframes 1 \"{1}\"", videoPath, outputPath);
+            Execute(ffmpegPath, param);
+        }
+
+        public void GetAlbumCover(string audioPath, string outputPath)
+        {
+            string param = String.Format(" -i \"{0}\" -an -vcodec copy \"{1}\"", audioPath, outputPath);
             Execute(ffmpegPath, param);
         }
     }

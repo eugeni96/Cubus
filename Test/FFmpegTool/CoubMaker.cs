@@ -65,14 +65,14 @@ namespace FFmpegTool
         }
         private void Cut(string videoPath, double start, double duration, string outputPath)
         {
-            string param = String.Format("-ss {1} -i \"{0}\" -t {2} -c:v copy -c:a copy -y \"{3}\"",
+            string param = String.Format("-ss {1} -i \"{0}\" -t {2} -c:v copy -c:a copy -vcodec libx264 -y \"{3}\"",
                 videoPath, start.ToString(CultureInfo.InvariantCulture), duration.ToString(CultureInfo.InvariantCulture), outputPath);
             Execute(ffmpegPath, param);
         }
 
         private void ConvertToMp4AndCut(string videoPath, double start, double duration, string outputPath)
         {
-            string param = String.Format("-ss {1} -i \"{0}\" -t {2} -c:v libx264 -c:a aac -strict experimental  -y \"{3}\"",
+            string param = String.Format("-ss {1} -i \"{0}\" -t {2} -c:v libx264 -c:a aac -strict experimental -vcodec libx264 -y \"{3}\"",
                 videoPath, start.ToString(CultureInfo.InvariantCulture), duration.ToString(CultureInfo.InvariantCulture), outputPath);
             Execute(ffmpegPath, param);
         }
@@ -102,14 +102,14 @@ namespace FFmpegTool
 
         private void ConcatVideoAndReduce(string txtPath, string audioPath, string outputPath)
         {
-            string param = String.Format("-i \"{1}\" -f concat -i \"{0}\" -c:v copy -c:a copy -y -shortest \"{2}\"",
+            string param = String.Format("-i \"{1}\" -f concat -i \"{0}\" -c:v copy -c:a copy -vcodec libx264 -y -shortest \"{2}\"",
                 txtPath, audioPath, outputPath);
             Execute(ffmpegPath, param);
         }
 
         private void ConcatAudioAndReduce(string txtPath, string videoPath, string outputPath)
         {
-            string param = String.Format(" -f concat -i \"{0}\" -i \"{1}\" -c:v copy -c:a copy -y -shortest \"{2}\"",
+            string param = String.Format(" -f concat -i \"{0}\" -i \"{1}\" -c:v copy -c:a copy -vcodec libx264 -y -shortest \"{2}\"",
                 txtPath, videoPath, outputPath);
             Execute(ffmpegPath, param);
         }
