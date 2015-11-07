@@ -17,7 +17,8 @@ namespace CoubMaintainanceJob
 
         protected override void OnExecute()
         {
-            CoubMaker maker = new CoubMaker();
+            string ffmpegPath = App.GetSetting(".ffmpegInstallationPath").ToString();
+            CoubMaker maker = new CoubMaker(ffmpegPath);
             string tempFile = App.GetTemporaryFile("mp4");            
             Record record = new Record(App);
             foreach (CoubMaintainanceTarget target in Targets)

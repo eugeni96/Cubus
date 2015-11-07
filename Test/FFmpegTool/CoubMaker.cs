@@ -10,9 +10,20 @@ namespace FFmpegTool
 {
     public class CoubMaker : FFmpegTool
     {
+        public CoubMaker(string ffmpegExecutableFolder):
+            base(ffmpegExecutableFolder)
+        {
+        }
+
         public void MakeCoub(string videoPath, string audioPath, string coubPath)
         {
-            MakeCoub(videoPath, 0, GetDuration(videoPath), audioPath, coubPath);
+            if ((Path.GetExtension(videoPath) == ".webm") || (Path.GetExtension(videoPath) == ".flv"))
+            {
+                string tempVideoPath = Path.ChangeExtension(Path.GetTempFileName(), ".mp4");
+                ConvertToMp4(videoPath, tempVideoPath);
+                videoPath = tempVideoPath;
+            }
+            MakeCoub(videoPath, GetDuration(videoPath), audioPath, coubPath);
         }
 
         public void MakeCoub(string videoPath, double videoStart, double videoDuration, string audioPath, string coubPath)
@@ -27,13 +38,12 @@ namespace FFmpegTool
                 Cut(videoPath, videoStart, videoDuration, tempVideoPath);
             }
             MakeCoub(tempVideoPath, videoDuration, audioPath, coubPath);
-
         }
 
-        public void MakeCoub(string videoPath, double videoDuration, string audioPath, string coubPath)
+        private void MakeCoub(string videoPath, double videoDuration, string audioPath, string coubPath)
         {
             double audioDuration = GetDuration(audioPath);
-            string listPath = Path.Combine(tempPath, "list.txt");
+            string listPath = Path.GetTempFileName();
             if (audioDuration > videoDuration)
             {
                 int loops = (int)(audioDuration / videoDuration);
@@ -62,7 +72,6 @@ namespace FFmpegTool
 
         private void ConvertToMp4AndCut(string videoPath, double start, double duration, string outputPath)
         {
-            //slower than Cut
             string param = String.Format("-ss {1} -i \"{0}\" -t {2} -c:v libx264 -c:a aac -strict experimental  -y \"{3}\"",
                 videoPath, start.ToString(CultureInfo.InvariantCulture), duration.ToString(CultureInfo.InvariantCulture), outputPath);
             Execute(ffmpegPath, param);

@@ -5,15 +5,11 @@ namespace CoubMaintainanceJob
 {
     public class CoubMaintainanceTarget : MaintenanceTarget
     {
-        public CoubMaintainanceTarget(string audio, string video)
-        {
-            AudioPath = audio;
-            VideoPath = video;
-        }
 
         public CoubMaintainanceTarget(string audio, string video, double videoStart, double videoDuration)
-            :this(audio, video)
         {
+            VideoPath = video;
+            AudioPath = audio;
             VideoDuration = videoDuration;
             VideoStart = videoStart;
         }

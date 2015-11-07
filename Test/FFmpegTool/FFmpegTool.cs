@@ -11,10 +11,8 @@ namespace FFmpegTool
         protected string ffprobePath;
         protected string tempPath = Path.GetTempPath();
 
-        protected FFmpegTool()
+        protected FFmpegTool(string ffmpegExecutableFolder)
         {
-            string ffmpegExecutableFolder = ConfigurationSettings.AppSettings["ffmpegExecutableFolder"];
-
             if (!Directory.Exists(ffmpegExecutableFolder))
                 throw new ArgumentException("Provided folder doesn't exists or doesn't have required permission",
                     "ffmegExecutableFolder");
