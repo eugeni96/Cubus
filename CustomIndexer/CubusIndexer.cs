@@ -39,6 +39,12 @@ namespace CustomIndexer
 
                 indexer.FileTypeRestriction = FileTypeRestriction.OnlyKnown;
 
+                indexer.ActionOnSuccess = ActionOnSuccess.PermanentlyDeleteFile;
+
+                indexer.FileSelectionPatterns.Add(FileSelectionPatternMode.Inclusive, ".mp4");
+                indexer.FileSelectionPatterns.Add(FileSelectionPatternMode.Inclusive, ".mp3");
+                indexer.FileSelectionPatterns.Add(FileSelectionPatternMode.Inclusive, ".wav");
+
                 indexer.Save();
                 
             }

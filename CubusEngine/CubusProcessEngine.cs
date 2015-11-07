@@ -26,13 +26,10 @@ namespace CubusEngine
             // пока что дикий хардкод с путями и расширениями
             List<string> videoExtensions = new List<string>()
             {
-                ".mp4",
-                ".avi",
-                ".mkv"
+                ".mp4"
             };
             List<string> audioExtensions = new List<string>()
             {
-                ".flac",
                 ".mp3",
                 ".wav"
             };
