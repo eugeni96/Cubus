@@ -65,7 +65,7 @@ namespace FFmpegTool
         }
         private void Cut(string videoPath, double start, double duration, string outputPath)
         {
-            string param = String.Format("-ss \"{1}\" -i {0} -t {2} -c:v copy -c:a copy -y \"{3}\"",
+            string param = String.Format("-ss {1} -i \"{0}\" -t {2} -c:v copy -c:a copy -y \"{3}\"",
                 videoPath, start.ToString(CultureInfo.InvariantCulture), duration.ToString(CultureInfo.InvariantCulture), outputPath);
             Execute(ffmpegPath, param);
         }
