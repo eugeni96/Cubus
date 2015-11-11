@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoubMaintainanceJob", "Coub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFmpegTool", "FFmpegTool\FFmpegTool.csproj", "{93981CEF-98B8-4682-8B96-D42E57880751}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioPreview", "AudioPreview\AudioPreview.csproj", "{56CA2FA9-F199-487B-8D83-FD209B467252}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{93981CEF-98B8-4682-8B96-D42E57880751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93981CEF-98B8-4682-8B96-D42E57880751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93981CEF-98B8-4682-8B96-D42E57880751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56CA2FA9-F199-487B-8D83-FD209B467252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CA2FA9-F199-487B-8D83-FD209B467252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CA2FA9-F199-487B-8D83-FD209B467252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CA2FA9-F199-487B-8D83-FD209B467252}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
